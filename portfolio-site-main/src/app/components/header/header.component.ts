@@ -32,11 +32,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
-      import('aos').then(AOS => AOS.default.init({
-        duration: 1000,
-        once: true,
-        mirror: false
-      }));
       window.scrollTo(0, 0);
     }
   }
