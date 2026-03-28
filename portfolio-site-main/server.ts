@@ -53,4 +53,6 @@ function run(): void {
   });
 }
 
-run();
+if (!process.env['VERCEL']) {
+  run();
+}
