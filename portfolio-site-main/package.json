@@ -7,7 +7,8 @@
     "build-dev": "ng build",
     "build:prod": "ng build --configuration=production",
     "serve:ssr": "node dist/portfolio/server/server.mjs",
-    "vercel-build": "npm run build:prod && echo 'Build completed successfully'"
+    "vercel-build": "npm run build:prod && echo 'Build completed successfully'",
+    "postinstall": "node ./scripts/fix-node-modules-tsconfig.js"
   },
   "dependencies": {
     "@angular/animations": "^18.2.13",
@@ -21,8 +22,6 @@
     "@angular/router": "^18.2.13",
     "@angular/ssr": "^18.2.12",
     "@emailjs/browser": "^4.4.1",
-    "@vercel/analytics": "^1.5.0",
-    "@vercel/speed-insights": "^1.2.0",
     "aos": "^2.3.4",
     "express": "^4.18.2",
     "rxjs": "~7.8.0",
