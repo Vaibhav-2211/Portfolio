@@ -2,19 +2,23 @@
   "version": 2,
   "public": true,
   "buildCommand": "npm run build:prod",
-  "rewrites": [
+  "routes": [
     {
-      "source": "/assets/(.*)",
-      "destination": "/assets/$1"
+      "src": "/assets/(.*)",
+      "dest": "/assets/$1"
     },
     {
-      "source": "/(.*)",
-      "destination": "/api"
+      "src": "^/(.*\.(js|css|png|jpg|jpeg|gif|svg|webp|woff|woff2|ttf|eot|pdf|xml|txt|json))$",
+      "dest": "/dist/portfolio/browser/$1"
+    },
+    {
+      "src": "^/(.*)$",
+      "dest": "/api/index.js"
     }
   ],
   "functions": {
     "api/index.js": {
-      "includeFiles": "dist/portfolio/**"
+      "includeFiles": ["dist/portfolio/**"]
     }
   }
 }

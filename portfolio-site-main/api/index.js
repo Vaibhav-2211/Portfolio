@@ -16,9 +16,12 @@ module.exports = async (req, res) => {
       return;
     }
 
-    // Check if it's a static file request
-    const url = req.url || '/';
-    const staticFileExtensions = ['.js', '.css', '.ico', '.png', '.jpg', '.jpeg', '.gif', '.svg', '.woff', '.woff2', '.ttf', '.eot', '.pdf', '.xml', '.txt', '.json'];
+    // Use the original client request path when available so rewrites still resolve static assets.
+    const originalUrl = Array.isArray(req.headers['x-vercel-original-url'])
+      ? req.headers['x-vercel-original-url'][0]
+      : req.headers['x-vercel-original-url'] || req.headers['x-vercel-original-path'] || req.url || '/';
+    const url = typeof originalUrl === 'string' ? originalUrl : '/';
+    const staticFileExtensions = ['.js', '.css', '.ico', '.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp', '.woff', '.woff2', '.ttf', '.eot', '.pdf', '.xml', '.txt', '.json'];
     const isStaticFile = staticFileExtensions.some(ext => url.endsWith(ext));
 
     if (isStaticFile) {
@@ -40,6 +43,7 @@ module.exports = async (req, res) => {
           '.jpeg': 'image/jpeg',
           '.gif': 'image/gif',
           '.svg': 'image/svg+xml',
+          '.webp': 'image/webp',
           '.ico': 'image/x-icon',
           '.pdf': 'application/pdf',
           '.xml': 'application/xml',
