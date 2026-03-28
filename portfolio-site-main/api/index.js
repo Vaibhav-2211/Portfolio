@@ -22,8 +22,9 @@ module.exports = async (req, res) => {
     const isStaticFile = staticFileExtensions.some(ext => url.endsWith(ext));
 
     if (isStaticFile) {
-      // Try to serve static file from browser directory
-      const filePath = path.join(__dirname, '../dist/portfolio/browser', url);
+      // Normalize the URL and remove leading slash before joining
+      const cleanUrl = url.split('?')[0].split('#')[0].replace(/^\/+/, '');
+      const filePath = path.join(__dirname, '../dist/portfolio/browser', cleanUrl);
 
       if (fs.existsSync(filePath)) {
         const fileContent = fs.readFileSync(filePath);
