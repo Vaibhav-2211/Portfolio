@@ -19,7 +19,7 @@ export class ResumeComponent implements OnInit {
     this.seoService.updateMetaTags({
       title: 'Resume – Vaibhav Khandelwal',
       description: 'Download or view Vaibhav Khandelwal\'s professional resume. Includes education, certifications, ML internship, and AI/full-stack projects.',
-      url: 'https://vaibhavkhandelwal-portfolio.vercel.app/resume',
+      url: 'https://vaibhavkhandelwal1303.vercel.app/resume',
       keywords: 'Vaibhav Khandelwal Resume, AI Developer CV, LangChain Resume, Full-Stack Developer Resume'
     });
   }

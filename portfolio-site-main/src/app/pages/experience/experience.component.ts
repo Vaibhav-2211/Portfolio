@@ -20,7 +20,7 @@ export class ExperienceComponent implements OnInit {
     this.seoService.updateMetaTags({
       title: 'Experience – Vaibhav Khandelwal',
       description: 'Explore Vaibhav Khandelwal\'s machine learning and full-stack project experience including LSTM-based emotion recognition and web systems.',
-      url: 'https://vaibhavkhandelwal-portfolio.vercel.app/experience',
+      url: 'https://vaibhavkhandelwal1303.vercel.app/experience',
       keywords: 'Vaibhav Khandelwal Experience, Machine Learning Intern, AI Project, Full-Stack Development, LangChain'
     });
   }

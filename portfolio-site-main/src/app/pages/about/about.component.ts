@@ -19,7 +19,7 @@ export class AboutComponent implements OnInit {
     this.seoService.updateMetaTags({
       title: 'About Me – Vaibhav Khandelwal',
       description: 'Learn about Vaibhav Khandelwal, an aspiring technology professional with experience in programming, machine learning, and cloud development.',
-      url: 'https://vaibhavkhandelwal-portfolio.vercel.app/about',
+      url: 'https://vaibhavkhandelwal1303.vercel.app/about',
       keywords: 'About Vaibhav Khandelwal, Technology Professional Background, AI, LangChain, Full-Stack Projects'
     });
   }

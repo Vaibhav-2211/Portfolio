@@ -34,7 +34,7 @@ export interface BreadcrumbListItem {
   providedIn: 'root'
 })
 export class SeoService {
-  private baseUrl = 'https://vaibhavkhandelwal-portfolio.vercel.app';
+  private baseUrl = 'https://vaibhavkhandelwal1303.vercel.app';
   private siteName = 'Vaibhav Khandelwal';
 
   constructor(

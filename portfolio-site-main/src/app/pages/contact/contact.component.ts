@@ -19,7 +19,7 @@ export class ContactComponent implements OnInit {
     this.seoService.updateMetaTags({
       title: 'Contact – Vaibhav Khandelwal',
       description: 'Get in touch with Vaibhav Khandelwal for collaboration opportunities, project inquiries, or professional discussions on AI and software development.',
-      url: 'https://vaibhavkhandelwal-portfolio.vercel.app/contact',
+      url: 'https://vaibhavkhandelwal1303.vercel.app/contact',
       keywords: 'Contact Vaibhav Khandelwal, AI Intern, LangChain, Full-Stack Development, Project Collaboration'
     });
   }

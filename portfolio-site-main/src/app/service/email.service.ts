@@ -13,7 +13,17 @@ export class EmailService {
   }
 
   sendEmail(data: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/send-email`, data)
+    // We send payload directly to FormSubmit, making the form functional right away.
+    // Ensure we handle FormSubmit's required fields.
+    const payload = {
+      name: data.name,
+      email: data.email,
+      message: data.message,
+      _subject: 'New Message from Portfolio!',
+      _captcha: false
+    };
+
+    return this.http.post<any>(`https://formsubmit.co/ajax/vaibhavkhandelwal.it27@gmail.com`, payload)
       .pipe(
         catchError(this.handleError)
       );

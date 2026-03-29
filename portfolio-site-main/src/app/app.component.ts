@@ -51,8 +51,8 @@ export class AppComponent implements OnInit {
     this.seoService.updateMetaTags({
       title: 'Vaibhav Khandelwal | Aspiring Technology Professional | Portfolio',
       description: 'Aspiring technology professional with experience in AI, full-stack web development, and cloud fundamentals. Explore projects in LangChain, real-time emotion products, and hospital systems.',
-      url: 'https://vaibhavkhandelwal-portfolio.vercel.app/',
-      image: 'https://vaibhavkhandelwal-portfolio.vercel.app/assets/logo.jpeg',
+      url: 'https://vaibhavkhandelwal1303.vercel.app/',
+      image: 'https://vaibhavkhandelwal1303.vercel.app/assets/logo.jpeg',
       keywords: 'Vaibhav Khandelwal, AI Developer, LangChain, Full-Stack, Python, JavaScript, Web Development, Resume, Portfolio'
     });
 

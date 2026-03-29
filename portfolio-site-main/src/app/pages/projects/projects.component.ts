@@ -19,7 +19,7 @@ export class ProjectsComponent implements OnInit {
     this.seoService.updateMetaTags({
       title: 'Projects – Vaibhav Khandelwal',
       description: 'Explore Vaibhav\'s AI and web development projects, including LangChain chatbots, hospital systems, and emotion-based recommendations.',
-      url: 'https://vaibhavkhandelwal-portfolio.vercel.app/projects',
+      url: 'https://vaibhavkhandelwal1303.vercel.app/projects',
       keywords: 'Vaibhav Khandelwal Projects, AI Portfolio, LangChain, Full-Stack Web Apps, Machine Learning Projects'
     });
   }

@@ -40,7 +40,7 @@ npm run serve:ssr
 
 ## 🌐 Demo
 
-Check out the site: [https://vaibhavkhandelwal-portfolio.vercel.app](https://vaibhavkhandelwal-portfolio.vercel.app/)
+Check out the site: [https://vaibhavkhandelwal1303.vercel.app](https://vaibhavkhandelwal1303.vercel.app/)
 
 ## 📧 Contact
 
@@ -55,6 +55,6 @@ For questions or feedback, feel free to reach out:
 
 If you find this portfolio project helpful and wish to use it as a base for your own site, **please give proper credit** by mentioning my name and linking to my website:
 
-> **Inspired by [Vaibhav Khandelwal](https://vaibhavkhandelwal-portfolio.vercel.app)**
+> **Inspired by [Vaibhav Khandelwal](https://vaibhavkhandelwal1303.vercel.app)**
 
 Feel free to modify the content and design as needed, but a small attribution goes a long way in supporting and appreciating open-source work. 😊
