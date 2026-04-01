@@ -1,0 +1,114 @@
+const path = require('path');
+const { pathToFileURL } = require('url');
+const fs = require('fs');
+
+// For Vercel serverless functions, we need to handle each request individually
+module.exports = async (req, res) => {
+  try {
+    // Set CORS headers
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+    // Handle preflight requests
+    if (req.method === 'OPTIONS') {
+      res.status(200).end();
+      return;
+    }
+
+    // Use the original client request path when available so rewrites still resolve static assets.
+    const originalUrl = Array.isArray(req.headers['x-vercel-original-url'])
+      ? req.headers['x-vercel-original-url'][0]
+      : req.headers['x-vercel-original-url'] || req.headers['x-vercel-original-path'] || req.url || '/';
+    const url = typeof originalUrl === 'string' ? originalUrl : '/';
+    const staticFileExtensions = ['.js', '.css', '.ico', '.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp', '.woff', '.woff2', '.ttf', '.eot', '.pdf', '.xml', '.txt', '.json'];
+    const isStaticFile = staticFileExtensions.some(ext => url.endsWith(ext));
+
+    if (isStaticFile) {
+      // Normalize the URL and remove leading slash before joining
+      const cleanUrl = url.split('?')[0].split('#')[0].replace(/^\/+/, '');
+      const filePath = path.join(__dirname, '../dist/portfolio/browser', cleanUrl);
+
+      if (fs.existsSync(filePath)) {
+        const fileContent = fs.readFileSync(filePath);
+
+        // Set appropriate content type
+        const ext = path.extname(url).toLowerCase();
+        const contentTypes = {
+          '.js': 'application/javascript',
+          '.css': 'text/css',
+          '.json': 'application/json',
+          '.png': 'image/png',
+          '.jpg': 'image/jpeg',
+          '.jpeg': 'image/jpeg',
+          '.gif': 'image/gif',
+          '.svg': 'image/svg+xml',
+          '.webp': 'image/webp',
+          '.ico': 'image/x-icon',
+          '.pdf': 'application/pdf',
+          '.xml': 'application/xml',
+          '.txt': 'text/plain'
+        };
+
+        res.setHeader('Content-Type', contentTypes[ext] || 'application/octet-stream');
+        res.setHeader('Cache-Control', 'public, max-age=31536000'); // 1 year cache
+        res.status(200).send(fileContent);
+        return;
+      }
+    }
+
+    // Dynamic import for ES module with proper file URL
+    const serverPath = path.join(__dirname, '../dist/portfolio/server/server.mjs');
+    const serverUrl = pathToFileURL(serverPath).href;
+    const { app } = await import(serverUrl);
+
+    // Create a new Express app instance for this request
+    const expressApp = app();
+
+    // Create a mock server to handle the request
+    const mockServer = {
+      listen: () => { },
+      address: () => ({ port: 3000 })
+    };
+
+    // Override the listen method to prevent the server from actually starting
+    expressApp.listen = () => mockServer;
+
+    // Handle the request directly
+    expressApp(req, res);
+
+  } catch (error) {
+    console.error('Server error:', error);
+    console.error('Error stack:', error.stack);
+
+    // Send a basic HTML response for the main page
+    if (req.url === '/' || req.url === '/index.html') {
+      res.setHeader('Content-Type', 'text/html');
+      res.status(200).send(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>Vaibhav Khandelwal Portfolio</title>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+        </head>
+        <body>
+          <h1>Portfolio Loading...</h1>
+          <p>The site is currently being set up. Please try again in a moment.</p>
+          <script>
+            setTimeout(() => {
+              window.location.reload();
+            }, 3000);
+          </script>
+        </body>
+        </html>
+      `);
+    } else {
+      res.status(404).json({
+        error: 'Not Found',
+        details: 'The requested resource was not found',
+        url: req.url
+      });
+    }
+  }
+};
