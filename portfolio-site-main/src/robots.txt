@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /dist/
+
+
+# Sitemap location
+Sitemap: https://vaibhavkhandelwal1303.vercel.app/sitemap.xml
+
+# Additional sitemaps
+Sitemap: https://vaibhavkhandelwal1303.vercel.app/sitemap.xml
